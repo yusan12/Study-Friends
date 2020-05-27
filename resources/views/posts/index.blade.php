@@ -11,12 +11,22 @@
 			@foreach ($posts as $post)
                 <div class="card-body">
                     <h5 class="card-title">タイトル：{{ $post->title }}</h5>
-                    <h5 class="card-title">タイトル：{{ $post->title }}</h5>
-										
 										<p class="card-text">内容：{{ $post->body }}</p>
 										<p class="card-text">投稿者:{{ $post->user->name }}</p>
                     <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細へ</a>
+										<div class="row justify-content-center">
+										<div class="col-md-3">
+											<form action="">
+												<input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+											</form>
                 </div>
+								<div class="col-md-3">
+									<form action="">
+										<input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+									</form>
+								</div>
+							</div>
+						</div>
 								<div class="card-footer text-muted">
 										投稿日時：{{ $post->created_at }}
 								</div>

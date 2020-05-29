@@ -4,11 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-	<div class="card text-center">
-			<div class="card-header">
-				投稿一覧
-			</div>
-			@foreach ($posts as $post)
+				<h1>一覧ページ</h1>
+				<div class="card text-center">
+					<div class="card-header">
+						Blogs
+					</div>
+					@foreach ($posts as $post)
                 <div class="card-body">
                     <h5 class="card-title">タイトル：{{ $post->title }}</h5>
 										<p class="card-text">内容：{{ $post->body }}</p>

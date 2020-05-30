@@ -36,5 +36,5 @@ class PostRequest extends FormRequest
 	'title.max'      => 'タイトルは20文字以内で記入してください。',
         'body.required'  => '内容は必須です。',
     ];
-    }
+    } 
 }

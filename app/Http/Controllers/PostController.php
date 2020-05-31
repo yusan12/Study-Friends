@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Auth;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -55,7 +56,6 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -65,9 +65,11 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+
+        $comment = Comment::where('post.id', $id)->get();
         $post->load('user', 'comments');
 
-        return view('posts.show', compact('post'));
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**

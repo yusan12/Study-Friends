@@ -42,17 +42,18 @@ class CommentController extends Controller
      */
     public function store(CommentRequest $request)
     {
-        $post = Post::find($request->post_id);
-
         $comment = new Comment;
 
         $comment -> body =$request-> body;
         $comment -> user_id = Auth::id();
         $comment -> post_id = $request -> post_id;
-
+        
         $comment -> save();
 
-        return view('posts.show', compact('post'));
+        $post = Post::find($request->post_id);
+        $comments = Comment::where('post_id', $request->post_id)->get();
+
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**

@@ -25,3 +25,6 @@ Route::resource('comments', 'CommentController');
 
 Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('login.twitter');
 Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
+
+// Route::get('view/if', 'ViewController@if');
+// Route::get('view/escape', 'ViewController@escape');

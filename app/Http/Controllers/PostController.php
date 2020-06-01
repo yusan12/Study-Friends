@@ -66,7 +66,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        $comment = Comment::where('post.id', $id)->get();
+        $comments = Comment::where('post_id', $id)->get();
         $post->load('user', 'comments');
 
         return view('posts.show', compact('post', 'comments'));

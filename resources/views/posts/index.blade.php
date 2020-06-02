@@ -15,18 +15,26 @@
                     <h5 class="card-title">タイトル：{{ $post->title }}</h5>
 										<p class="card-text">内容：{{ $post->body }}</p>
 										<p class="card-text">投稿者:{{ $post->user->name }}</p>
-                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細へ</a>
+                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細</a>
 										<div class="row justify-content-center">
-										<div class="col-md-3">
-											<form action="">
-												<input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
-											</form>
-                </div>
-								<div class="col-md-3">
-									<form action="">
-										<input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
-									</form>
+											@if($post->users()->where('user_id', Auth::id())->exists())
+											<div class="col-md-3">
+												<form action="{{ route('unfavorites', $post) }}" method="POST">
+													@csrf
+													<input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+												</form>
+											</div>
+											@else
+											<div class="col-md-3">
+													<form action="{{ route('favorites', $post) }}" method="POST">
+															@csrf
+															<input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+													</form>
+											</div>			
+											@endif
 								</div>
+								<div class="row justify-content-center">
+									<p>いいね数：{{ $post->users()->count() }}</p>
 							</div>
 						</div>
 								<div class="card-footer text-muted">
@@ -34,9 +42,6 @@
 								</div>
 								@endforeach
 							</div>
-				</div>
-        <div class="col-md-2">
-            
         </div>
     </div>
 </div>

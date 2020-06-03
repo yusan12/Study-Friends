@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
+Route::POST('/posts/search', 'PostController@search')->name('posts.search');
 
 Route::resource('comments', 'CommentController');
 

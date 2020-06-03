@@ -1,6 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="card-body">
+<div class="container">
+    <div class="row">    
+        <div class="col-xs-8 col-xs-offset-2">
+				<h5 class="card-title">検索フォーム</h5>
+				<div id="custom-search-input">
+				<div class="card text-center">
+		    <div class="input-group">
+				<form action="{{ route('posts.search') }}" method="POST">
+							@csrf
+                <!-- <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+								
+                <input type="hidden" name="search_param" value="all" id="search_param">          -->
+                <input type="text" class="form-control" name="x" placeholder="Search term..." name="search">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+										<!-- <span class="glyphicon glyphicon-search"> -->
+										<i class="fas fa-search"></i>
+										</button>
+										</span>
+										</form>
+										
+                </span>
+            </div>
+            </div>
+						</div>
+        </div>
+	</div>
+</div>
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

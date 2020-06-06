@@ -21,7 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
 
-
 Route::resource('comments', 'CommentController');
 
 Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('login.twitter');
@@ -29,6 +28,9 @@ Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallbac
 
 Route::post('posts/{post}/favorites', 'FavoriteController@store')->name('favorites');
 Route::post('posts/{post}/unfavorites', 'FavoriteController@destroy')->name('unfavorites');
+
+Route::get('search', 'SearchController@index')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 
 
 

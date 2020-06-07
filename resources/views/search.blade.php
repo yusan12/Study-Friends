@@ -1,51 +1,28 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="typeahead.js-bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Search Name by Auto Complete</h1>
+    <input type="text" class="typeahead form-control" name="name">
+  </div>
+  <script type="text/javascript">
+    var path="{{ route('autocomplete') }}";
+    $('input.typeahead').typeahead({
+      source:function (query,process){
+        return $.get(path,{query:name,function (data) {
+          return process(data);
 
-@section('content')
-
-
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-				<h1>一覧ページ</h1>
-				<a href="{{ route('posts.create') }}" class="btn btn-primary">新規投稿</a>
-				<div class="card text-center">
-					<div class="card-header">
-						Blogs
-					</div>
-					@foreach ($posts as $post)
-                <div class="card-body">
-                    <h5 class="card-title">タイトル：{{ $post->title }}</h5>
-										<p class="card-text">内容：{{ $post->body }}</p>
-										<p class="card-text">投稿者:{{ $post->user->name }}</p>
-                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細</a>
-										<div class="row justify-content-center">
-											@if($post->users()->where('user_id', Auth::id())->exists())
-											<div class="col-md-3">
-												<form action="{{ route('unfavorites', $post) }}" method="POST">
-													@csrf
-													<input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
-												</form>
-											</div>
-											@else
-											<div class="col-md-3">
-													<form action="{{ route('favorites', $post) }}" method="POST">
-															@csrf
-															<input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
-													</form>
-											</div>			
-											@endif
-								</div>
-								<div class="row justify-content-center">
-									<p>いいね数：{{ $post->users()->count() }}</p>
-							</div>
-						</div>
-								<div class="card-footer text-muted">
-										投稿日時：{{ $post->created_at }}
-								</div>
-								@endforeach
-							</div>
-        </div>
-    </div>
-</div>
-@endsection
+        });
+      }
+    });
+  </script>
+</body>
+</html>

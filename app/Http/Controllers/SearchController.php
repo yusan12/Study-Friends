@@ -11,8 +11,8 @@ class SearchController extends Controller
     }
 
     public function autocomplete(Request $request){
-        $data=Item_model::select("name")
-            ->where("name","LIKE","%{$request->input('name')}%")->get;
+        $data=User::select("name")
+            ->where("name","LIKE","%{$request->input('name')}%")->get();
         return response()->json($data);
 
     }

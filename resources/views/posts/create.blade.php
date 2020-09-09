@@ -38,6 +38,10 @@
                     <label>内容</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                 </div>
+                <div class="form-group">
+                <label>リンク</label>
+                    <input type="text" class="form-control" placeholder="リンク先を入力してください" value="{{old('link')}}" name="link">
+                </div>
                 <button type="submit" class="btn btn-primary">作成する</button>
             </form>
         </div>

@@ -51,6 +51,7 @@ class PostController extends Controller
         $post -> title       =$request -> title;
         $post -> body        =$request -> body;
         $post -> user_id     =Auth::id();
+        $post -> link        =$request ->link;
 
         $post ->save();
 
@@ -68,8 +69,9 @@ class PostController extends Controller
 
         $comments = Comment::where('post_id', $id)->get();
         $post->load('user', 'comments');
+        $body = $post->replaceUrl($post->body);
 
-        return view('posts.show', compact('post', 'comments'));
+        return view('posts.show', compact('post', 'comments', 'body'));
     }
 
     /**

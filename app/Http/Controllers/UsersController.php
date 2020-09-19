@@ -27,4 +27,16 @@ class UsersController extends Controller
         // 'users.edit'は後程作成するviewを指定しています。
         return view('users.edit', compact('user'));
     }
+
+    public function postEdit($id, Request $request)
+    {
+        // フォームから渡されたデータの取得
+        $user = $request->post();
+        
+        // DBへ更新依頼
+        $this->user->updateUserFindById($user);
+
+        // 再度編集画面へリダイレクト
+        return redirect()->route('users.edit', ['id' => $id]);
+    }
 }

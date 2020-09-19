@@ -43,5 +43,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'users'], function() {
         Route::get('edit/{id}', 'UsersController@getEdit')->name('users.edit');
         Route::post('edit/{id}', 'UsersController@postEdit')->name('users.postEdit');
+        Route::post('edit/{id}', 'UsersController@postEdit')->name('users.postEdit');
     });
 });

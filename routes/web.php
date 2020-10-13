@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('hello', 'HelloController@index');
+Route::get('hello/other', 'HelloController@other');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -36,5 +39,13 @@ Route::get('posts/{post}/countfavorites', 'FavoriteController@count');
 
 Route::get('posts/{post}/hasfavorites', 'FavoriteController@hasfavorite');
 
-
-
+Route::group(['middleware' => 'auth'], function() {
+    // 前回追加したルーティングなどは省略しています
+    
+    // 今回追加したルーティング
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('edit/{id}', 'UsersController@getEdit')->name('users.edit');
+        Route::post('edit/{id}', 'UsersController@postEdit')->name('users.postEdit');
+        Route::post('edit/{id}', 'UsersController@postEdit')->name('users.postEdit');
+    });
+});

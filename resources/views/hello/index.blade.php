@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 <head>
   <title>Document</title>
   <style>
@@ -7,21 +7,19 @@
       margin:-20px 0px -30px 0px; letter-spacing:-4pt; }
   </style>
 </head>
-<body>
+<body> -->
     @extends('layouts.helloapp')
     @section('title', 'Index')
-    <h1>Blade/Index</h1>
-    <p>&#064;whileディレクティブの例</p>
-    <ol>
-    @php
-    $counter = 0;
-    @endphp
-    @while ($counter < count($data))
-    <li>{{$data[$counter]}}</li>
-    @php
-    $counter++;
-    @endphp
-    @endwhile
-    </ol>
-</body>
-</html>
+    @section('menubar')
+        @parent
+        インデックスページ
+    @endsection
+
+    @section('content')
+        <p>ここが本文のコンテンツです。</p>
+        <ul>
+        @each('components.item', $data, 'item')
+        </ul>
+    @endsection
+
+        

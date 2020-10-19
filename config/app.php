@@ -178,6 +178,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
 
         JD\Cloudder\CloudderServiceProvider::class,
+        App\Providers\HelloServiceProvider::Class
 
     ],
 

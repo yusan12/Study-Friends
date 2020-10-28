@@ -16,7 +16,18 @@
     @endsection
 
 @section('content')
-        <p>{{$msg}}</p>
+    <table>
+        <tr>
+        <th>Name</th>Mail</th><th>Age</th></tr>
+        @foreach ($item as $item)
+            <tr>
+                <td>{{$item->name}}</td>
+                <td>{{$item->mail}}</td>
+                <td>{{$item->age}}</td>
+            </tr>
+        @endforeach
+    </table>
+        <!-- <p>{{$msg}}</p>
         @if (count($errors) > 0)
             <p>入力に問題があります。再入力してください。</p>
         @endif
@@ -32,5 +43,5 @@
                 </td></tr>
         
         </table>
-        </form>
+        </form> -->
 @endsection

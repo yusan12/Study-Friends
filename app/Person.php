@@ -14,7 +14,7 @@ class Person extends Model
     public static $rules = array(
         'name' => 'required',
         'mail' => 'email',
-        'age' => 'integer|min:0|max:150'
+        // 'age' => 'integer|min:0|max:150'
     );
 
     public function getData()

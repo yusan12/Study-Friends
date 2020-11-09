@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Board extends Model
 {
-    
+
     protected $guarded = array('id');
 
         public static $rules = array(
@@ -17,7 +17,12 @@ class Board extends Model
 
     public function getData()
     {
-        return $this->id . ': ' . $this->title;
+        return $this->id . ': ' . $this->title . ' ('
+            . $this->person->name . ')';
+    }
+
+    public function person()
+    {
+        return $this->belongsTo('App\Person');
     }
 }
-

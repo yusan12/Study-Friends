@@ -44,7 +44,7 @@ Route::get('posts/{post}/hasfavorites', 'FavoriteController@hasfavorite');
 
 Route::group(['middleware' => 'auth'], function() {
     // 前回追加したルーティングなどは省略しています
-    
+
     // 今回追加したルーティング
     Route::group(['prefix' => 'users'], function() {
         Route::get('edit/{id}', 'UsersController@getEdit')->name('users.edit');
@@ -84,3 +84,6 @@ Route::get('board', 'BoardController@index');
 Route::get('board/add', 'BoardController@add');
 Route::post('board/add', 'BoardController@create');
 
+Route::resource('rest', 'RestappController');
+
+Route::get('hello/rest', 'HelloController@rest');

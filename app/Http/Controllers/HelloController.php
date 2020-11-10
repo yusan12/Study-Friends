@@ -32,7 +32,7 @@ class HelloController extends Controller
         $param = [
             'name' => $request->name,
             'mail' => $request->mail,
-            
+
         ];
         DB::table('people')->insert($param);
         return redirect('/hello');
@@ -50,7 +50,7 @@ class HelloController extends Controller
         $param = [
             'name' => $request->name,
             'mail' => $request->mail,
-            
+
         ];
         DB::table('people')
             ->where('id', $request->id)
@@ -81,5 +81,9 @@ class HelloController extends Controller
             ->get();
         return view('hello.show', ['items' => $items]);
     }
-}
 
+    public function rest(Request $request)
+    {
+        return view('hello.rest');
+    }
+}

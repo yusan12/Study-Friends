@@ -7,17 +7,20 @@ use Illuminate\Http\Response;
 use App\Http\Requests\HelloRequest;
 use Validator;
 use Illuminate\Support\Facades\DB;
-use  App\Person;
+use App\Person;
+use Illuminate\Support\Facades\Auth;
 
 class HelloController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
         $sort = $request->sort;
         // $items = DB::table('people')->simplePaginate(5);
         $items = Person::orderBy($sort, 'asc')
-        ->paginate(3);
-        $param = ['items' => $items, 'sort' => $sort];
+            ->simplePaginate(3);
+        $param = ['items' => $items, 'sort' => $sort,
+            'user' => $user];
         return view('hello.index', $param);
     }
 
@@ -103,5 +106,10 @@ class HelloController extends Controller
         $msg = $request->input;
         $request->session()->put('msg', $msg);
         return redirect('hello/session');
+    }
+
+    public function getAuth(Request $request)
+    {
+        $param = 
     }
 }
